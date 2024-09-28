@@ -4,7 +4,8 @@ class AnimatedButton extends StatefulWidget {
   final String text;
   final Function onPressed;
 
-  AnimatedButton({required this.text, required this.onPressed});
+  const AnimatedButton(
+      {super.key, required this.text, required this.onPressed});
 
   @override
   _AnimatedButtonState createState() => _AnimatedButtonState();
@@ -22,20 +23,20 @@ class _AnimatedButtonState extends State<AnimatedButton> {
         widget.onPressed();
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         width: _pressed ? 160 : 150,
         height: _pressed ? 55 : 50,
         decoration: BoxDecoration(
           color: Colors.green,
           borderRadius: BorderRadius.circular(25),
           boxShadow: _pressed
-              ? [BoxShadow(color: Colors.green, blurRadius: 8)]
-              : [BoxShadow(color: Colors.greenAccent, blurRadius: 4)],
+              ? [const BoxShadow(color: Colors.green, blurRadius: 8)]
+              : [const BoxShadow(color: Colors.greenAccent, blurRadius: 4)],
         ),
         alignment: Alignment.center,
         child: Text(
           widget.text,
-          style: TextStyle(color: Colors.white, fontSize: 16),
+          style: const TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),
     );
@@ -46,20 +47,21 @@ class CustomButton extends StatelessWidget {
   final String text;
   final Function onPressed;
 
-  CustomButton({required this.text, required this.onPressed});
+  const CustomButton({super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () => onPressed(),
-      child: Text(text),
       style: ButtonStyle(
-        padding: MaterialStateProperty.all(
-            EdgeInsets.symmetric(vertical: 15, horizontal: 50)),
-        backgroundColor: MaterialStateProperty.all(Colors.green),
-        textStyle: MaterialStateProperty.all(
-            TextStyle(fontSize: 16, color: Colors.white)),
+        padding: WidgetStateProperty.all(
+            const EdgeInsets.symmetric(vertical: 15, horizontal: 50)),
+        backgroundColor: WidgetStateProperty.all(Colors.green),
+        textStyle: WidgetStateProperty.all(
+            const TextStyle(fontSize: 16, color: Colors.white)),
       ),
+      child: Text(text),
     );
   }
 }
+
