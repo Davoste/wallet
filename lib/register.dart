@@ -3,11 +3,13 @@ import 'package:wallet/custombutton.dart';
 import 'package:wallet/dashboard.dart';
 
 class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register'),
+        title: const Text('Register'),
       ),
       body: Center(
         child: Padding(
@@ -16,35 +18,39 @@ class RegisterPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Logo
-              Icon(
+              const Icon(
                 Icons.account_balance_wallet,
                 size: 100,
                 color: Colors.green,
               ),
-              SizedBox(height: 20),
+              Text(
+                "M-Pepe",
+                style: TextStyle(color: Colors.green, fontSize: 20),
+              ),
+              const SizedBox(height: 20),
 
-              TextField(
+              const TextField(
                 decoration: InputDecoration(
                   labelText: 'Username',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 20),
-              TextField(
+              const SizedBox(height: 20),
+              const TextField(
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 20),
-              TextField(
+              const SizedBox(height: 20),
+              const TextField(
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               CustomButton(
                 text: 'Register',
                 onPressed: () {
@@ -58,12 +64,12 @@ class RegisterPage extends StatelessWidget {
                       ));
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('Already have an account? Login'),
+                child: const Text('Already have an account? Login'),
               ),
             ],
           ),
