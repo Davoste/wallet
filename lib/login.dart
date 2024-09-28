@@ -3,11 +3,13 @@ import 'package:wallet/custombutton.dart';
 import 'package:wallet/dashboard.dart';
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: const Text('Login'),
       ),
       body: Center(
         child: Padding(
@@ -16,28 +18,32 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Logo
-              Icon(
+              const Icon(
                 Icons.account_balance_wallet,
                 size: 100,
                 color: Colors.green,
               ),
-              SizedBox(height: 20),
+              Text(
+                "M-Pepe",
+                style: TextStyle(color: Colors.green, fontSize: 20),
+              ),
+              const SizedBox(height: 20),
 
-              TextField(
+              const TextField(
                 decoration: InputDecoration(
                   labelText: 'Username',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 20),
-              TextField(
+              const SizedBox(height: 20),
+              const TextField(
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               AnimatedButton(
                 text: 'Login',
                 onPressed: () {
@@ -51,12 +57,12 @@ class LoginPage extends StatelessWidget {
                       ));
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/register');
                 },
-                child: Text('Don’t have an account? Register'),
+                child: const Text('Don’t have an account? Register'),
               ),
             ],
           ),
