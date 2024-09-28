@@ -7,13 +7,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Mobile Wallet App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           bodySmall: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
       ),
