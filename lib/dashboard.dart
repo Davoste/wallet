@@ -2,14 +2,61 @@ import 'package:flutter/material.dart';
 
 import 'package:wallet/sendmoney.dart';
 
+class DashboardGreeting extends StatefulWidget {
+  final String accountOwner;
+
+  DashboardGreeting({required this.accountOwner});
+
+  @override
+  _DashboardGreetingState createState() => _DashboardGreetingState();
+}
+
+class _DashboardGreetingState extends State<DashboardGreeting>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeIn;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+    _fadeIn = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+    );
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _fadeIn,
+      child: Container(
+          // The same code for the greeting container
+          ),
+    );
+  }
+}
+
 class DashboardPage extends StatelessWidget {
-  final String accountOwner = 'Stephen'; // Example account owner's name
+  final String accountOwner = 'Stephen';
+
+  const DashboardPage({super.key}); // Example account owner's name
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'M-Pepe',
           style: TextStyle(color: Colors.white),
         ),
@@ -32,17 +79,20 @@ class DashboardPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Hello,',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w400,
-                          color: const Color.fromARGB(255, 5, 95, 8),
+                          color: Color.fromARGB(255, 5, 95, 8),
                         ),
+                      ),
+                      DashboardGreeting(
+                        accountOwner: "Stephen",
                       ),
                       Text(
                         accountOwner,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -50,7 +100,7 @@ class DashboardPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(width: 200),
+                  const SizedBox(width: 200),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -58,7 +108,7 @@ class DashboardPage extends StatelessWidget {
                         radius: 40,
                         backgroundColor: Colors
                             .blueGrey[100], // Placeholder avatar background
-                        child: Icon(
+                        child: const Icon(
                           Icons.person,
                           size: 50,
                           color: Colors.grey,
@@ -69,7 +119,7 @@ class DashboardPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
 
             // Row of clickable service icons
             Expanded(
@@ -90,7 +140,7 @@ class DashboardPage extends StatelessWidget {
                                   SendMoneyPage(),
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) {
-                            var begin = Offset(
+                            var begin = const Offset(
                                 1.0, 0.0); // Page slides in from the right
                             var end = Offset.zero;
                             var curve = Curves.easeInOut;
@@ -149,7 +199,7 @@ class DashboardPage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -189,7 +239,11 @@ class DashboardIcon extends StatelessWidget {
   final String label;
   final Function onTap;
 
-  DashboardIcon({required this.icon, required this.label, required this.onTap});
+  const DashboardIcon(
+      {super.key,
+      required this.icon,
+      required this.label,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -206,10 +260,10 @@ class DashboardIcon extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             label,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             textAlign: TextAlign.center,
           ),
         ],
